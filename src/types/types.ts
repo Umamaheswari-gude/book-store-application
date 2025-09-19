@@ -5,3 +5,6 @@ export type Book = {
   bookImage: string;
   price: number;
 };
+
+export type CartItem = Book & {
+};
