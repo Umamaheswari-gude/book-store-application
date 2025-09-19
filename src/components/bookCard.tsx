@@ -27,7 +27,7 @@ const handleButtonClick = () => {
       <p>{book.author}</p>
       <p>{book.price}</p>
       <button onClick={handleButtonClick}
-     >
+      className={`cart-button ${isAdded ? 'remove' : 'add'}`}>
         {isAdded ? 'Remove from cart' : 'Add To Cart'}
       </button>
     </div>
