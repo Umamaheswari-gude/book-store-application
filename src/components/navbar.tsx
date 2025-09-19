@@ -1,5 +1,7 @@
 import React from "react";
 import "./navbar.css";
+import { useRef, useEffect } from "react";
+
 
 type NavbarProps = {
   search: string;
@@ -7,7 +9,13 @@ type NavbarProps = {
 
 };
 const Navbar: React.FC<NavbarProps> = ({ search, setSearch }) => {
-   
+    const inputRef = useRef<HTMLInputElement>(null);
+useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   return (
     <nav className="navbar">
       <h2>Books</h2>
@@ -16,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ search, setSearch }) => {
         placeholder="Search for Books..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-
+        ref={inputRef}
       />
     </nav>
   );
