@@ -19,3 +19,13 @@
   object-fit: cover;
 }
 
+.cart-button.add {
+  background-color:#c9eacb; 
+  border-radius: 2rem;
+}
+
+.cart-button.remove {
+  background-color: #ef928b; 
+  border-radius: 2rem;
+}
+
