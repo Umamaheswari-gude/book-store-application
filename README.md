@@ -18,6 +18,7 @@
 ---
 
 ## Features
+**Book Listing:**
 
 - Created dummy API and fetched data.
 - Displayed the list of books with the details:
@@ -29,7 +30,18 @@
 - Turned the button text to `Remove from cart` on adding it to cart.
 - Implemented `Removed from Cart`  button used to remove item from cart.
 - Allowed user to  Search  books by title of the book or author.
----
+
+**Cart Functionality:**
+- Displayed cart items in a sidebar with a cart icon
+- Implemented that cart icon holds a number that indicates the  number of items in the cart.
+- For each item in the cart:
+     - Displayed cover page, title, author, price, quantity.
+     - Allowed user to increase or decrease quantity.
+     - Allowed user to remove the item from the cart.
+- Order summary:
+     - Subtotal and Total (including shipping charges).
+
+--- 
 
 ## Technologies Used
 
