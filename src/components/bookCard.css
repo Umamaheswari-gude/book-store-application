@@ -1,0 +1,14 @@
+.book-card {
+  border: 1px solid #ccc;
+  padding: 3rem;
+  border-radius: 12px;
+  border-color: rgb(142, 118, 149);
+  text-align: center;
+}
+
+.book-card img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
