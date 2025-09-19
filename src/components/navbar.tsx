@@ -18,7 +18,7 @@ useEffect(() => {
 
   return (
     <nav className="navbar">
-      <h2>Books</h2>
+      <h2>The Curiosity Corner</h2>
       <input
         type="text"
         placeholder="Search for Books..."
