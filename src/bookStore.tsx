@@ -24,7 +24,8 @@ function Application() {
   };
 
   const filteredBooks = books.filter((book) =>
-    book.bookName.toLowerCase().includes(search.toLowerCase()) 
+    book.bookName.toLowerCase().includes(search.toLowerCase()) ||
+    book.author.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
