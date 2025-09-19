@@ -14,6 +14,7 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
       <h3>{book.bookName}</h3>
       <p>{book.author}</p>
       <p>{book.price}</p>
+      <button className="cart-button">Add to cart</button>
     </div>
   );
 };
