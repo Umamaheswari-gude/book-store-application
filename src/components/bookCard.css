@@ -1,0 +1,39 @@
+.book-card {
+  border: 1px solid #ccc;
+  padding: 3rem;
+  border-radius: 12px;
+  border-color: rgb(142, 118, 149);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.book-card:hover {
+    transform: translateY(-25px);
+    box-shadow: 0 8px 16px rgba(182, 28, 28, 0.12);
+}
+
+.book-card img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.cart-button.add {
+  background-color:#c9eacb; 
+  border-radius: 2rem;
+}
+
+.cart-button.add:hover {
+  background-color: #73cc78;
+}
+
+.cart-button.remove {
+  background-color: #ef928b; 
+  border-radius: 2rem;
+}
+
+.cart-button.remove:hover {
+  background-color: #e94f44;
+}
+
