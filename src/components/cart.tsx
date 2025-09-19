@@ -5,12 +5,12 @@ import "./cart.css";
 type CartProps = {
   cart: CartItem[];
   increaseQty: (id: string) => void;
-
+  decreaseQty: (id: string) => void;
 };
 const Cart: React.FC<CartProps> = ({
   cart,
   increaseQty,
-  
+  decreaseQty,
 }) => {
 
   return (
@@ -26,6 +26,8 @@ const Cart: React.FC<CartProps> = ({
             <p>{item.author}</p>
             <p>₹{item.price}</p>
             <div className="cart-controls">
+              <button onClick={() => decreaseQty(item.id)}>-</button>
+              <span>{item.quantity}</span>
               <button onClick={() => increaseQty(item.id)}>+</button>
             </div>
           </div>
