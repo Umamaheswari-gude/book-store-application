@@ -4,6 +4,8 @@ import { useBooks } from "./utils/api";
 import  { useState } from "react";
 import { Book, CartItem } from "./types/types";
 import Cart from "./components/cart";
+import Navbar from "./components/navbar";
+
 
 
 function Application() {
@@ -23,6 +25,7 @@ function Application() {
 
   return (
     <div className="head">
+     <Navbar search="search" />
       <div className="main-content">
         <BookList books={books} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} />
         <Cart
