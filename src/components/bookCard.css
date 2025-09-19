@@ -33,5 +33,7 @@
   border-radius: 2rem;
 }
 
-
+.cart-button.remove:hover {
+  background-color: #e94f44;
+}
 
