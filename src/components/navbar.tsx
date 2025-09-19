@@ -3,8 +3,10 @@ import "./navbar.css";
 
 type NavbarProps = {
   search: string;
+  setSearch: (value: string) => void;
+
 };
-const Navbar: React.FC<NavbarProps> = ({ search }) => {
+const Navbar: React.FC<NavbarProps> = ({ search, setSearch }) => {
    
   return (
     <nav className="navbar">
@@ -13,6 +15,8 @@ const Navbar: React.FC<NavbarProps> = ({ search }) => {
         type="text"
         placeholder="Search for Books..."
         value={search}
+        onChange={(e) => setSearch(e.target.value)}
+
       />
     </nav>
   );
