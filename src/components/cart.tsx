@@ -26,6 +26,7 @@ const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
           <BsCart />{cart.length}
         </a>
       </h3> */}
+      <h3>🛒{cart.length}</h3>
       {cart.length === 0 && <p>No items in cart</p>}
       {cart.map((item) => (
         <div key={item.id} className="cart-item">
