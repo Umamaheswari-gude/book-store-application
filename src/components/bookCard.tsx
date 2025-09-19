@@ -1,5 +1,6 @@
 import React from "react";
 import { Book } from "../types/types";
+import "./bookCard.css";
 
 type BookCardProps = {
   book: Book;
