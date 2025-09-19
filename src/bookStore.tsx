@@ -53,6 +53,7 @@ function Application() {
           cart={cart}
           increaseQty={increaseQty}
           decreaseQty={decreaseQty}
+          removeFromCart={removeFromCart}
         />
       </div>
     </div>
