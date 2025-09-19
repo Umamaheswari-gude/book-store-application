@@ -1,4 +1,5 @@
 import React from "react";
+import "./navbar.css";
 
 type NavbarProps = {
   search: string;
