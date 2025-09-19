@@ -35,6 +35,14 @@ function Application() {
       )
     );
   };
+  const decreaseQty = (id: string) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 } : item
+      )
+    );
+  };
 
   return (
     <div className="head">
@@ -44,6 +52,7 @@ function Application() {
         <Cart
           cart={cart}
           increaseQty={increaseQty}
+          decreaseQty={decreaseQty}
         />
       </div>
     </div>
