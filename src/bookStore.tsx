@@ -11,6 +11,7 @@ import Navbar from "./components/navbar";
 function Application() {
   const books = useBooks();
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [search, setSearch] = useState("");
 
   const addToCart = (book: Book) => {
     setCart((prev) => {
@@ -25,7 +26,7 @@ function Application() {
 
   return (
     <div className="head">
-     <Navbar search="search" />
+     <Navbar search={search} setSearch={setSearch} />
       <div className="main-content">
         <BookList books={books} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} />
         <Cart
