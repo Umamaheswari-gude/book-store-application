@@ -23,12 +23,15 @@ function Application() {
     setCart((prev) => prev.filter((item) => item.id !== bookId));
   };
 
+  const filteredBooks = books.filter((book) =>
+    book.bookName.toLowerCase().includes(search.toLowerCase()) 
+  );
 
   return (
     <div className="head">
      <Navbar search={search} setSearch={setSearch} />
       <div className="main-content">
-        <BookList books={books} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} />
+        <BookList  books={filteredBooks} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} />
         <Cart
           cart={cart}
         />
