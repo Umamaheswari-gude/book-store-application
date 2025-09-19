@@ -24,8 +24,14 @@
   border-radius: 2rem;
 }
 
+.cart-button.add:hover {
+  background-color: #73cc78;
+}
+
 .cart-button.remove {
   background-color: #ef928b; 
   border-radius: 2rem;
 }
+
+
 
