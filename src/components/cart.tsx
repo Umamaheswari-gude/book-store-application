@@ -6,11 +6,13 @@ type CartProps = {
   cart: CartItem[];
   increaseQty: (id: string) => void;
   decreaseQty: (id: string) => void;
+  removeFromCart: (id: string) => void;
 };
 const Cart: React.FC<CartProps> = ({
   cart,
   increaseQty,
   decreaseQty,
+  removeFromCart,
 }) => {
 
   return (
@@ -29,6 +31,7 @@ const Cart: React.FC<CartProps> = ({
               <button onClick={() => decreaseQty(item.id)}>-</button>
               <span>{item.quantity}</span>
               <button onClick={() => increaseQty(item.id)}>+</button>
+              <button onClick={() => removeFromCart(item.id)}>❌</button>
             </div>
           </div>
         </div>
