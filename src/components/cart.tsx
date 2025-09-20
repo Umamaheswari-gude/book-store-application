@@ -18,6 +18,7 @@ const Cart: React.FC<CartProps> = ({
 
 const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 const shipping = cart.length > 0 ? 100 :0 ;
+const total = subtotal + shipping;
 
   return (
     <div className="cart">
@@ -48,6 +49,7 @@ const shipping = cart.length > 0 ? 100 :0 ;
       <div className="cart-summary">
         <p>Subtotal: ₹{subtotal.toFixed(2)}</p>     
         <p>Shipping: ₹{shipping.toFixed(2)}</p> 
+        <p>Total:  ₹{total.toFixed(2)}</p> 
       </div>
 
     </div>
