@@ -32,8 +32,7 @@ const total = subtotal + shipping;
       {cart.length === 0 && <p>No items in cart</p>}
       {cart.map((item) => (
         <div key={item.id} className="cart-item">
-          <img src={item.bookImage} alt={item.bookName} />
-          <div>
+          <img src={item.bookImage} alt={item.bookName} />   
             <h4>{item.bookName}</h4>
             <p>{item.author}</p>
             <p>₹{item.price}</p>
@@ -43,10 +42,11 @@ const total = subtotal + shipping;
               <button onClick={() => increaseQty(item.id)}>+</button>
               <button onClick={() => removeFromCart(item.id)}>❌</button>
             </div>
-          </div>
+          
         </div>
       ))}
       <div className="cart-summary">
+        <h3>Order Summary</h3>
         <p>Subtotal: ₹{subtotal.toFixed(2)}</p>     
         <p>Shipping: ₹{shipping.toFixed(2)}</p> 
         <p>Total:  ₹{total.toFixed(2)}</p> 
