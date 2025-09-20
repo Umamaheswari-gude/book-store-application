@@ -25,7 +25,7 @@ const handleButtonClick = () => {
       <img src={book.bookImage} alt={book.bookName} />
       <h3>{book.bookName}</h3>
       <p>{book.author}</p>
-      <p>{book.price}</p>
+      <p>₹{book.price}</p>
       <button onClick={handleButtonClick}
       className={`cart-button ${isAdded ? 'remove' : 'add'}`}>
         {isAdded ? 'Remove from cart' : 'Add To Cart'}
