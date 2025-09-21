@@ -22,14 +22,15 @@ const total = subtotal + shipping;
 
   return (
     <div className="cart">
+        <div className="cart-header">
       <h2>Your Cart</h2>
       {/* <h3>
         <a href="" className='text-white text-decoration-none'>
           <BsCart />{cart.length}
         </a>
       </h3> */}
-      <h3>🛒{cart.length}</h3>
-      {cart.length === 0 && <p>No items in cart</p>}
+      <h3>🛒{cart.length}</h3></div>
+      {cart.length === 0 && <p>No items in cart..</p>}
       {cart.map((item) => (
         <div key={item.id} className="cart-item">
           <img src={item.bookImage} alt={item.bookName} />   
@@ -49,7 +50,7 @@ const total = subtotal + shipping;
         <h3>Order Summary</h3>
         <p>Subtotal: ₹{subtotal.toFixed(2)}</p>     
         <p>Shipping: ₹{shipping.toFixed(2)}</p> 
-        <p>Total:  ₹{total.toFixed(2)}</p> 
+        <p>Total: ₹{total.toFixed(2)}</p> 
       </div>
 
     </div>
