@@ -41,6 +41,11 @@
 - Order summary:
      - Subtotal and Total (including shipping charges).
 
+**User Login:**
+- The user is prompted to enter their login details(used
+static data for user details).
+- Upon successful login, the user is navigated to the Books Store and Cart.
+
 --- 
 
 ## Technologies Used
