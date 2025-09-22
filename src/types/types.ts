@@ -7,4 +7,5 @@ export type Book = {
 };
 
 export type CartItem = Book & {
+    quantity: number;
 };

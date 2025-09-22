@@ -28,6 +28,21 @@ function Application() {
     book.author.toLowerCase().includes(search.toLowerCase())
   );
 
+  const increaseQty = (id: string) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+  const decreaseQty = (id: string) => {
+    setCart(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, quantity: item.quantity - 1 } : item ).filter(item => item.quantity > 0)
+      );
+  };
+
   return (
     <div className="head">
      <Navbar search={search} setSearch={setSearch} />
@@ -35,6 +50,9 @@ function Application() {
         <BookList  books={filteredBooks} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} />
         <Cart
           cart={cart}
+          increaseQty={increaseQty}
+          decreaseQty={decreaseQty}
+          removeFromCart={removeFromCart}
         />
       </div>
     </div>
