@@ -4,6 +4,7 @@ import { Book } from "../types/types";
 type WishlistContextType = {
   wishlist: Book[];
   addToWishlist: (book: Book) => void;
+  removeFromWishlist: (id: string) => void;
 };
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
@@ -17,9 +18,12 @@ export const WishlistProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       return [...prev, book];
     });
   };
-   
+   const removeFromWishlist = (id: string) => {
+    setWishlist((prev) => prev.filter((b) => b.id !== id));
+  };
+
   return (
-    <WishlistContext.Provider value={{ wishlist, addToWishlist }}>
+    <WishlistContext.Provider value={{ wishlist, addToWishlist, removeFromWishlist }}>
       {children}
     </WishlistContext.Provider>
   );
