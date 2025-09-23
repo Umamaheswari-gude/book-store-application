@@ -23,7 +23,7 @@ const Register: React.FC = () => {
       setError("User already exists!");
       return;
     }
-    addUser({ email, password });
+    addUser({ email, password , firstName, lastName});
     alert("Registration successful!");
     navigate("/login");
   };
