@@ -4,6 +4,7 @@ import { Book, CartItem } from "../types/types";
 type CartContextType = {
   cart: CartItem[];
   addToCart: (book: Book) => void;
+  removeFromCart: (id: string) => void;
   
 };
 
@@ -23,9 +24,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return [...prev, { ...book, quantity: 1 }];
     });
   };
+
+  const removeFromCart = (id: string) => {
+    setCart((prev) => prev.filter((p) => p.id !== id));
+  };
+
   
   return (
-    <CartContext.Provider value={{ cart, addToCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );
