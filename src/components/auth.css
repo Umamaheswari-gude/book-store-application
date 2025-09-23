@@ -25,13 +25,15 @@
   font-size: 14px;
   color: #636e72;
 }
-
-
-
-
-
-
-
-
-
-
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.auth-form input {
+  padding: 0.9rem;
+  border: 1px solid #dfe6e9;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: border 0.3s;
+}
