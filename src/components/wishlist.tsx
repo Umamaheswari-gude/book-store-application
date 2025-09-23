@@ -2,14 +2,28 @@ import React from "react";
 import { useWishlist } from "../context/wishlistContext";
 import { useCart } from "../context/cartContext";
 import "./wishlist.css";
+import { useAuth } from "../context/userAuthentication";
 
 const Wishlist: React.FC = () => {
   const { wishlist } = useWishlist();
   const { cart, addToCart, removeFromCart } = useCart();
-    
+     const { currentUser } = useAuth();
+    if (!currentUser) {
+       return <p>Please log in to view your wishlist.</p>; 
+    }
   return (
     <div>
        <div className="wishlist-page">
+        <div className="wishlist-header">
+          <h1>Wishlist</h1>
+          {currentUser && (
+            <div className="user-block">
+              <div className="user-name">
+                {currentUser.firstName} {currentUser.lastName}
+              </div>
+              <div className="user-email">{currentUser.email}</div>
+            </div>
+          )}
         </div>
          <div className="wishlist-grid">
           {wishlist.length === 0 ? (
@@ -38,6 +52,7 @@ const Wishlist: React.FC = () => {
             })
           )}
         </div>
+      </div>
       </div>
   )}
 export default Wishlist;
