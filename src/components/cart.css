@@ -40,9 +40,16 @@
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+
 .cart-summary h3 {
   margin-bottom: 15px;
 } 
 
-
-
+.wishlist-icon {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #eb0629;
+  transition: color 0.3s ease;
+}
