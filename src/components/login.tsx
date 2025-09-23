@@ -44,7 +44,10 @@ const Login: React.FC = () => {
           />
           <button type="submit" className="auth-button">Login</button>
         </form>
-        
+        <p className="auth-footer">
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/register")}>Sign up</span>
+        </p>
       </div>
     </div>
   );
