@@ -5,6 +5,7 @@ import { users } from "./data/userStore";
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
@@ -18,6 +19,7 @@ const Login: React.FC = () => {
       console.log("Logged in:", foundUser);
       navigate("/books");
     } else {
+      setError("Invalid email or password!Please enter the correct");
     }
   };
 
@@ -44,6 +46,7 @@ const Login: React.FC = () => {
           />
           <button type="submit" className="auth-button">Login</button>
         </form>
+        {error && <p className="error">{error}</p>}
         <p className="auth-footer">
           Don't have an account?{" "}
           <span onClick={() => navigate("/register")}>Sign up</span>
