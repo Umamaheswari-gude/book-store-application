@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { users } from "./data/userStore";
+import { users, addUser } from "./data/userStore";
 
 const Register: React.FC = () => {
   const [firstName, setFirstName] = useState("");
@@ -22,6 +22,8 @@ const Register: React.FC = () => {
       setError("User already exists!");
       return;
     }
+    addUser({ email, password });
+    alert("Registration successful!");
     navigate("/login");
   };
 
