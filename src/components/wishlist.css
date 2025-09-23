@@ -28,3 +28,24 @@
     object-fit:cover; 
     margin-bottom:8px; 
 }
+.card-actions { 
+    display:flex; 
+    gap:8px; 
+    justify-content:center; 
+    margin-top:8px; 
+}
+
+.card-actions .cart { 
+    background:#007bff; 
+    color:#fff; 
+    padding:8px; 
+    border-radius:6px; 
+    border:0; 
+    cursor:pointer; 
+}
+
+.card-actions .cart:hover { 
+    background:#339af0;
+}
+
+
