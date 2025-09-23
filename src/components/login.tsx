@@ -1,0 +1,68 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./auth.css";
+import { Users } from "../types/types";
+import { staticUsers } from "./data/userStore";
+
+const Login: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    let storedUsers: Users[] = JSON.parse(localStorage.getItem("users") || "[]");
+    
+    if (storedUsers.length === 0) {
+      localStorage.setItem("users", JSON.stringify(staticUsers));
+      storedUsers = staticUsers;
+    }
+
+    const foundUser = storedUsers.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (foundUser) {
+      console.log("Logged in:", foundUser);
+      localStorage.setItem("currentUser", JSON.stringify(foundUser));
+      navigate("/books");
+    } else {
+      setError("Invalid email or password!Please enter the correct");
+    }
+  };
+
+  return (
+    <div className="auth-container">
+      <div className="auth-box">
+        <h2>Login</h2>
+        <p className="auth-subtitle">Login to access your BookMart account</p>
+        <form onSubmit={handleLogin} className="auth-form">
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="on"
+            required
+          />
+          <button type="submit" className="auth-button">Login</button>
+        </form>
+        {error && <p className="error">{error}</p>}
+        <p className="auth-footer">
+          Don't have an account?{" "}
+          <span onClick={() => navigate("/register")}>Sign up</span>
+        </p>
+      </div>
+    </div>
+  );
+};
+export default Login;     
