@@ -13,4 +13,6 @@ export type CartItem = Book & {
 export type Users = {
   email: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
