@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./auth.css";
-import { Users } from "../types/types";
+import { useAuth } from "../context/userAuthentication";
 import { staticUsers } from "./data/userStore";
 
 const Login: React.FC = () => {
@@ -9,27 +9,21 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    let storedUsers: Users[] = JSON.parse(localStorage.getItem("users") || "[]");
-    
-    if (storedUsers.length === 0) {
-      localStorage.setItem("users", JSON.stringify(staticUsers));
-      storedUsers = staticUsers;
-    }
-
-    const foundUser = storedUsers.find(
+    const foundUser = staticUsers.find(
       (u) => u.email === email && u.password === password
     );
 
     if (foundUser) {
       console.log("Logged in:", foundUser);
-      localStorage.setItem("currentUser", JSON.stringify(foundUser));
+      login(foundUser);
       navigate("/books");
     } else {
-      setError("Invalid email or password!Please enter the correct");
+      setError("Invalid email or password! Please enter the correct");
     }
   };
 
@@ -65,4 +59,4 @@ const Login: React.FC = () => {
     </div>
   );
 };
-export default Login;     
+export default Login;
