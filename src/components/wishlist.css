@@ -1,0 +1,17 @@
+.wishlist-page { 
+    padding:28px; 
+}
+.wishlist-header { 
+    display:flex; 
+    justify-content:space-between; 
+    align-items:center; 
+    margin-bottom:18px; 
+}
+.user-block { 
+    text-align:right; 
+}
+.wishlist-grid { 
+    display:grid; 
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap:16px; 
+}
