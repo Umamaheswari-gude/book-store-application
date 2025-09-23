@@ -48,4 +48,10 @@
     background:#339af0;
 }
 
+.wishlist-header {
+    font-weight: bold;
+    color: #333;
+    background-color: #e3d2ff;
+    padding: 10px;
+}
 
