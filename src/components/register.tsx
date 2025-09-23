@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { users } from "./data/userStore";
 
 const Register: React.FC = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -31,6 +33,20 @@ const Register: React.FC = () => {
           Books kavala nayana!!!
         </p>
         <form onSubmit={handleRegister} className="auth-form">
+          <input
+            type="text"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
           <input
             type="email"
             placeholder="Email address"
