@@ -1,6 +1,7 @@
 import React from "react";
 import { CartItem } from "../types/types";
 import "./cart.css";
+import { useNavigate } from "react-router-dom";
 // import { BsCart } from 'react-icons/bs';
 
 type CartProps = {
@@ -19,6 +20,7 @@ const Cart: React.FC<CartProps> = ({
 const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 const shipping = cart.length > 0 ? 100 :0 ;
 const total = subtotal + shipping;
+const navigate = useNavigate();
 
   return (
     <div className="cart">
@@ -29,6 +31,8 @@ const total = subtotal + shipping;
           <BsCart />{cart.length}
         </a>
       </h3> */}
+      <button className="wishlist-icon" onClick={() => navigate("/wishlist")}>♡
+      </button>
       <h3>🛒{cart.length}</h3></div>
       {cart.length === 0 && <p>No items in cart..</p>}
       {cart.map((item) => (
@@ -57,3 +61,5 @@ const total = subtotal + shipping;
   );
 };
 export default Cart;
+
+
