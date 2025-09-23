@@ -15,7 +15,7 @@ const Register: React.FC = () => {
       setError("Passwords do not match!");
       return;
     }
-
+    
     if (users.find((u) => u.email === email)) {
       setError("User already exists!");
       return;
@@ -57,7 +57,10 @@ const Register: React.FC = () => {
           <button type="submit" className="auth-button">Create account</button>
         </form>
         {error && <p className="error">{error}</p>}
-       
+        <p className="auth-footer">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")}>Login</span>
+        </p>
       </div>
     </div>
   );
