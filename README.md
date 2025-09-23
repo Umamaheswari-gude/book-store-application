@@ -46,6 +46,11 @@
 static data for user details).
 - Upon successful login, the user is navigated to the Books Store and Cart.
 
+**User Signup:**
+- If the user is new, clicking the  Register  button it navigate them to the Register Page.
+- After successful registration, the user is redirected back to the Login Page.
+- Upon successful login, the user is navigated to the Books Store and Cart.
+
 --- 
 
 ## Technologies Used
