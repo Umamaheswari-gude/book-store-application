@@ -15,3 +15,16 @@
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
     gap:16px; 
 }
+.wishlist-card { 
+    background:#fff;
+    padding:12px; 
+    border-radius:8px; 
+    text-align:center; 
+    box-shadow:0 6px 18px rgba(0,0,0,0.04); 
+}
+.wishlist-card img { 
+    width:100px; 
+    height:140px; 
+    object-fit:cover; 
+    margin-bottom:8px; 
+}
