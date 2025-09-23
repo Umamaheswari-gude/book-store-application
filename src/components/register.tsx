@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { users, addUser } from "./data/userStore";
 import "./auth.css";
+import { Users } from "../types/types";
+import { staticUsers } from "./data/userStore";
 
 const Register: React.FC = () => {
   const [firstName, setFirstName] = useState("");
@@ -19,11 +20,22 @@ const Register: React.FC = () => {
       return;
     }
     
-    if (users.find((u) => u.email === email)) {
+    let storedUsers: Users[] = JSON.parse(localStorage.getItem("users") || "[]");
+
+    if (storedUsers.length === 0) {
+      localStorage.setItem("users", JSON.stringify(staticUsers));
+      storedUsers = staticUsers;
+    }
+
+    if (storedUsers.find((u) => u.email === email)) {
       setError("User already exists!");
       return;
     }
-    addUser({ email, password , firstName, lastName});
+
+    const updateUsers = [...storedUsers, { email, password , firstName, lastName}];
+    localStorage.setItem("users", JSON.stringify(updateUsers));
+    console.log("Registered new users:", { email, password , firstName, lastName});
+    console.log("Update users:", updateUsers);
     alert("Registration successful!");
     navigate("/login");
   };
@@ -37,12 +49,7 @@ const Register: React.FC = () => {
         </p>
         <form onSubmit={handleRegister} className="auth-form">
           <input
-            type="text"
-            placeholder="First name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
+            type="text" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
           <input
             type="text"
             placeholder="Last name"
