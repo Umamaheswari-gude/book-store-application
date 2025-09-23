@@ -7,9 +7,11 @@ import Register from './components/register';
 import Wishlist from './components/wishlist';
 import { WishlistProvider } from './context/wishlistContext';
 import { CartProvider } from './context/cartContext';
+import { AuthProvider } from './context/userAuthentication';
 
 function App() {
   return (
+    <AuthProvider>
     <CartProvider>
     <WishlistProvider>
       <Router>
@@ -23,6 +25,7 @@ function App() {
     </Router> 
     </WishlistProvider>
     </CartProvider>
+    </AuthProvider>
   );
 }
 
