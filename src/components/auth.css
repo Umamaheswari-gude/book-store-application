@@ -37,3 +37,44 @@
   font-size: 14px;
   transition: border 0.3s;
 }
+.auth-form input:focus {
+  border: 1px solid #0984e3;
+  outline: none;
+}
+.auth-button {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: #0984e3;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.auth-button:hover {
+  background: #74b9ff;
+}
+.error {
+  margin-top: 0.8rem;
+  font-size: 14px;
+  color: red;
+}
+.auth-footer {
+  margin-top: 1rem;
+  font-size: 14px;
+}
+.auth-footer span {
+  color: #0984e3;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
