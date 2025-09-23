@@ -25,6 +25,7 @@ const Login: React.FC = () => {
     <div className="auth-container">
       <div className="auth-box">
         <h2>Login</h2>
+        <p className="auth-subtitle">Login to access your BookMart account</p>
         <form onSubmit={handleLogin} className="auth-form">
           <input
             type="email"
