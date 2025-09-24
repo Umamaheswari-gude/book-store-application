@@ -13,7 +13,7 @@ const BookDetails: React.FC = () => {
   const book = books.find((book) => book.id === id);
   if (!book) return <p>Book not found!</p>;
   const inCart = cart.some((c) => c.id === book.id);
-  const inWishlist = wishlist.some((w) => w.id === book.id);
+  const inWishlist = wishlist.some((wishlist) => wishlist.id === book.id);
 
 
   return (
