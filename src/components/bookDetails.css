@@ -2,12 +2,15 @@
   display: flex;
   gap: 30px;
   padding: 40px;
+  border: 2px solid #c1c8cb;
+  border-radius: 30px;
 }
 
 .book-not-found {
     font-size: 22px;
     align-items: center;
 }
+
 .book-image img {
   width: 300px;
   height: auto;
@@ -19,6 +22,10 @@
 .book-info h2 {
   font-size: 28px;
   margin-bottom: 10px;
+}
+.description {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
 }
 .book-info h4 {
   font-size: 16px;
