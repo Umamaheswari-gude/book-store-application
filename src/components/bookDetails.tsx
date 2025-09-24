@@ -3,14 +3,17 @@ import { useParams } from "react-router-dom";
 import { useBooks } from "../utils/api";
 import './bookDetails.css';
 import { useCart } from "../context/cartContext";
+import { useWishlist } from "../context/wishlistContext";
 
 const BookDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const books = useBooks();
   const { addToCart, cart, removeFromCart } = useCart();
+  const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
   const book = books.find((book) => book.id === id);
   if (!book) return <p>Book not found!</p>;
   const inCart = cart.some((c) => c.id === book.id);
+  const inWishlist = wishlist.some((w) => w.id === book.id);
 
 
   return (
@@ -31,7 +34,12 @@ const BookDetails: React.FC = () => {
               inCart ? removeFromCart(book.id) : addToCart(book)}>
             {inCart ? "Remove from Cart" : "Add to Cart"}
           </button>       
-          
+           <button
+            className={`wish-btn ${inWishlist ? "active" : ""}`}
+            onClick={() =>
+              inWishlist ? removeFromWishlist(book.id) : addToWishlist(book)}>
+            {inWishlist ? "❤️" : "♡ Wishlist"}
+          </button>
         </div>
       </div>
     </div>
