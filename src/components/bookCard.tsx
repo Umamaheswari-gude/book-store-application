@@ -3,6 +3,7 @@ import { Book, CartItem } from "../types/types";
 import "./bookCard.css";
 import { useCart } from "../context/cartContext";
 import { useWishlist } from "../context/wishlistContext";
+import { useNavigate } from "react-router-dom";
 
 type BookCardProps = {
   book: Book;
@@ -12,7 +13,7 @@ type BookCardProps = {
 };
 
 const BookCard: React.FC<BookCardProps> = ({ book, addToCart: propAdd, removeFromCart: propRemove, cart: propCart }) => {
-
+const navigate = useNavigate();
   const { cart, addToCart, removeFromCart } = useCart();
   const { wishlist, addToWishlist, removeFromWishlist } = useWishlist();
 
@@ -32,7 +33,9 @@ const BookCard: React.FC<BookCardProps> = ({ book, addToCart: propAdd, removeFro
 
   return (
     <div className="book-card">
-      <img src={book.bookImage} alt={book.bookName} />
+       <h2 className="view-details" onClick={() => navigate(`/books/${book.id}`)}>
+        <img src={book.bookImage} alt={book.bookName} />
+      </h2>
       <h3>{book.bookName}</h3>
       <p className="author">{book.author}</p>
       <p className="price">₹{book.price}</p>
