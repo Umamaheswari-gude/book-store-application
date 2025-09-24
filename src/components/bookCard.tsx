@@ -55,14 +55,3 @@ const BookCard: React.FC<BookCardProps> = ({ book, addToCart: propAdd, removeFro
 };
 
 export default BookCard;
-
-
-
-
-
-
-
-
-
-
-
