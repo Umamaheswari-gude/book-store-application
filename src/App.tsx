@@ -8,6 +8,7 @@ import Wishlist from './components/wishlist';
 import { WishlistProvider } from './context/wishlistContext';
 import { CartProvider } from './context/cartContext';
 import { AuthProvider } from './context/userAuthentication';
+import BookDetails from './components/bookDetails';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/books" element={<Application />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/books/:id" element={<BookDetails />} />
+
       </Routes>
     </Router> 
     </WishlistProvider>
