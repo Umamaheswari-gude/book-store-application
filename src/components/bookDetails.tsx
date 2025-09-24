@@ -13,7 +13,14 @@ const BookDetails: React.FC = () => {
       <div className="book-image">
         <img src={book.bookImage} alt={book.bookName} />
       </div>
-      
+      <div className="book-info">
+        <h2>{book.bookName}</h2>
+        <h4>{book.author}</h4>
+        <p className="price">₹{book.price}</p>
+        <h3>Description</h3>
+        <p>{book.description}</p>         
+          
+        </div>
       </div>
   );
 };
