@@ -1,0 +1,36 @@
+.book-details-container {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+}
+
+.book-not-found {
+    font-size: 22px;
+    align-items: center;
+}
+.book-image img {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+}
+.book-info {
+  flex: 1;
+}
+.book-info h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.book-info h4 {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #545353;
+  margin-bottom: 20px;
+}
+
+
+
