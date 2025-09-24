@@ -26,7 +26,7 @@ const BookDetails: React.FC = () => {
         <h4>{book.author}</h4>
         <p className="price">₹{book.price}</p>
         <h3>Description</h3>
-        <p>{book.description}</p>  
+        <p className="description">{book.description}</p>  
         <div className="actions">
           <button
             className={`cart-btn-details ${inCart ? "remove" : "add"}`}
