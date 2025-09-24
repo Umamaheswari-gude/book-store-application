@@ -41,6 +41,24 @@
 - Order summary:
      - Subtotal and Total (including shipping charges).
 
+**User Login:**
+- The user is prompted to enter their login details(used
+static data for user details).
+- Upon successful login, the user is navigated to the Books Store and Cart.
+
+**User Signup:**
+- If the user is new, clicking the  Register  button it navigate them to the Register Page.
+- After successful registration, the user is redirected back to the Login Page.
+- Upon successful login, the user is navigated to the Books Store and Cart.
+
+**Wishlist:**
+- Each Book card contains a wish-list button/icon on it.
+- On clicking wish-list icon, the book will be added to the wish-list.
+- A Wishlist icon is placed beside the Cart icon.
+- On clicking the wish-list icon, the user is navigated to the Wishlist Page.
+- All the Wish-listed items will be displayed when user navigates.
+- User details(name, email, etc) also be displayed in wish-list page.
+
 --- 
 
 ## Technologies Used

@@ -9,3 +9,10 @@ export type Book = {
 export type CartItem = Book & {
     quantity: number;
 };
+
+export type Users = {
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
