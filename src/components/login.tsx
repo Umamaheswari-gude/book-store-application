@@ -14,7 +14,11 @@ const Login: React.FC = () => {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const foundUser = staticUsers.find(
+  const staticUserList = staticUsers;
+  const storedUsers = JSON.parse(localStorage.getItem("users") || "[]");
+  const allUsers = [...staticUserList, ...storedUsers];
+
+    const foundUser = allUsers.find(
       (u) => u.email === email && u.password === password
     );
 
