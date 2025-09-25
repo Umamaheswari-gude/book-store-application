@@ -59,6 +59,19 @@ static data for user details).
 - All the Wish-listed items will be displayed when user navigates.
 - User details(name, email, etc) also be displayed in wish-list page.
 
+**Book-Details:**
+
+- Implemented the book description page with details:
+   - Book image
+   - Title
+   - Author
+   - Price
+   - Description
+   - Add to card button
+   - Wishlist button
+- If the user click on the add to cart button the item will be adds to the cart.
+- If the user click on the wishlist button the item will be adds to the wishlist.
+
 --- 
 
 ## Technologies Used
