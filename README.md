@@ -79,6 +79,7 @@ static data for user details).
 - **TypeScript** 
 - **Reactjs** 
 - **CSS**
+
 ---
 
 ## Technologies Stack
@@ -89,7 +90,7 @@ static data for user details).
     - visit : https://react.dev/
 - **Nodejs**
     - Visit : https://nodejs.org/en
-    
+
 ---
 
 ## Installation
