@@ -81,6 +81,17 @@ static data for user details).
 - **CSS**
 ---
 
+## Technologies Stack
+- **TypeScript**
+    - TypeScript download and installation guide 
+       - visit : https://www.typescriptlang.org/download/
+- **Reactjs**
+    - visit : https://react.dev/
+- **Nodejs**
+    - Visit : https://nodejs.org/en
+    
+---
+
 ## Installation
 
 ### 1. Clone the Repository
