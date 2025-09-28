@@ -4,6 +4,25 @@ import "./auth.css";
 import { Users } from "../types/types";
 import { staticUsers } from "./data/userStore";
 
+
+const AuthInput:React.FC<{
+  type: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  autoComplete?: string;
+}> = ({ type , placeholder, value, onChange, required = true, autoComplete = "off" }) => (
+  <input
+     type={type}
+     placeholder={placeholder}
+     value={value}
+     onChange={onChange}
+     required={required}
+     autoComplete={autoComplete}
+  />
+);
+
 const Register: React.FC = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -48,39 +67,13 @@ const Register: React.FC = () => {
           Books kavala nayana!!!
         </p>
         <form onSubmit={handleRegister} className="auth-form">
-          <input
-            type="text" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
-          <input
-            type="text"
-            placeholder="Last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="on"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            autoComplete="on"
-            required
-          />
+          <AuthInput type="text" placeholder="First name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+          <AuthInput type="text" placeholder="Last name" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
+          <AuthInput type="email" placeholder="Email address" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <AuthInput type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="on" required />
+          <AuthInput type="password" placeholder="Confirm password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} autoComplete="on" required />
           <button type="submit" className="auth-button">Create account</button>
+
         </form>
         {error && <p className="error">{error}</p>}
         <p className="auth-footer">
