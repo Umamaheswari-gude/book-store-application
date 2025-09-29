@@ -1,7 +1,7 @@
 import React from "react";
 import { Book, CartItem } from "../types/types";
 import BookCard from "./bookCard";
-import "./bookList.css";
+import "../styles/bookList.css";
 
 type BookListProps = {
   books: Book[];

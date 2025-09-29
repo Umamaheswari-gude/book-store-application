@@ -1,7 +1,7 @@
 import React from "react";
 import { useWishlist } from "../context/wishlistContext";
 import { useCart } from "../context/cartContext";
-import "./wishlist.css";
+import "../styles/wishlist.css";
 import { useAuth } from "../context/userAuthentication";
 
 const Wishlist: React.FC = () => {

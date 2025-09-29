@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./auth.css";
+import "../styles/auth.css";
 import { Users } from "../types/types";
 import { staticUsers } from "./data/userStore";
 
