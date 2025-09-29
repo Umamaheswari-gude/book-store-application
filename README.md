@@ -72,6 +72,10 @@ static data for user details).
 - If the user click on the add to cart button the item will be adds to the cart.
 - If the user click on the wishlist button the item will be adds to the wishlist.
 
+**Testing:**
+
+- Implemented testing to the react application.
+
 --- 
 
 ## Technologies Used
