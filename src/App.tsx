@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Application from './bookStore';
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Routes, Route, Navigate } from "react-router-dom";
 import Login from './components/login';
 import Register from './components/register';
 import Wishlist from './components/wishlist';
@@ -15,7 +15,6 @@ function App() {
     <AuthProvider>
     <CartProvider>
     <WishlistProvider>
-      <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/register" replace />} />
         <Route path="/login" element={<Login />} />
@@ -25,7 +24,6 @@ function App() {
         <Route path="/books/:id" element={<BookDetails />} />
 
       </Routes>
-    </Router> 
     </WishlistProvider>
     </CartProvider>
     </AuthProvider>
