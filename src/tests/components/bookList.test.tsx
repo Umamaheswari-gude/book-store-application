@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { Book } from "../../types/types";
 import BookList from "../../components/bookList";
 
@@ -29,4 +28,12 @@ describe("BookList Component", () => {
     render(<BookList books={mockBooks} addToCart={jest.fn()} removeFromCart={jest.fn()} cart={[]} />);
     expect(screen.getAllByTestId("book-card")).toHaveLength(2);
   });
+
+  test("calls addToCart when Add button clicked", () => {
+    const addMock = jest.fn();
+    render(<BookList books={mockBooks} addToCart={addMock} removeFromCart={jest.fn()} cart={[]} />);
+    fireEvent.click(screen.getAllByText("Add")[0]); 
+    expect(addMock).toHaveBeenCalledWith(mockBooks[0]);
+  });
+
 });
