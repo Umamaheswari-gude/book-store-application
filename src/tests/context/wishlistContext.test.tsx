@@ -35,6 +35,15 @@ describe("WishlistContext", () => {
     });
     expect(result.current.wishlist).toHaveLength(1);
   });
+
+  test("removes a book from wishlist", () => {
+    const { result } = renderHook(() => useWishlist(), { wrapper });
+    act(() => {
+      result.current.addToWishlist(sampleBook);
+      result.current.removeFromWishlist("1");
+    });
+    expect(result.current.wishlist).toHaveLength(0);
+  });
 });
 
 
