@@ -36,4 +36,10 @@ describe("BookList Component", () => {
     expect(addMock).toHaveBeenCalledWith(mockBooks[0]);
   });
 
+  test("calls removeFromCart when Remove button clicked", () => {
+    const removeMock = jest.fn();
+    render(<BookList books={mockBooks} addToCart={jest.fn()} removeFromCart={removeMock} cart={[]} />);
+    fireEvent.click(screen.getAllByText("Remove")[1]); 
+    expect(removeMock).toHaveBeenCalledWith("2");
+  });
 });
