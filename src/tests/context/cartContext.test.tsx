@@ -35,6 +35,15 @@ describe("CartContext", () => {
     });
     expect(result.current.cart[0].quantity).toBe(2);
   });
+
+  test("removes a book from cart", () => {
+    const { result } = renderHook(() => useCart(), { wrapper });
+    act(() => {
+      result.current.addToCart(sampleBook);
+      result.current.removeFromCart("1");
+    });
+    expect(result.current.cart).toHaveLength(0);
+  });
 });
 
 
