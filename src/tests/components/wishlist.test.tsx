@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { useWishlist } from "../../context/wishlistContext";
 import { useCart } from "../../context/cartContext";
 import { useAuth } from "../../context/userAuthentication";
@@ -11,6 +11,14 @@ const mockUseWishlist = useWishlist as jest.Mock;
 const mockUseCart = useCart as jest.Mock;
 const mockUseAuth = useAuth as jest.Mock;
 
+const sampleBook = {
+  id: "1",
+  bookName: "Death",
+  author: "Sadhguru",
+  price: 100,
+  bookImage: "death.jpg",
+};
+
 describe("Wishlist Component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -22,6 +30,20 @@ describe("Wishlist Component", () => {
     mockUseCart.mockReturnValue({ cart: [], addToCart: jest.fn(), removeFromCart: jest.fn() });
     render(<Wishlist />);
     expect(screen.getByText(/Please log in to view your wishlist/i)).toBeInTheDocument();
+  });
+
+  test("display wishlist with book and allows adding to cart", () => {
+    const addToCart = jest.fn();
+    mockUseAuth.mockReturnValue({
+      currentUser: { firstName: "mahi", lastName: "gude", email: "mahi@gmail.com" },
+    });
+    mockUseWishlist.mockReturnValue({ wishlist: [sampleBook], addToWishlist: jest.fn(), removeFromWishlist: jest.fn() });
+    mockUseCart.mockReturnValue({ cart: [], addToCart, removeFromCart: jest.fn() });
+    render(<Wishlist />);
+    expect(screen.getByText("Death")).toBeInTheDocument();
+    expect(screen.getByText(/Add to Cart/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Add to Cart/i }));
+    expect(addToCart).toHaveBeenCalledWith(sampleBook);
   });
 });
 
