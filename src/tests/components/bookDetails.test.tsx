@@ -66,4 +66,15 @@ describe("BookDetails Component", () => {
     fireEvent.click(wishlistBtn);
     expect(wishlistBtn).toBeInTheDocument();
   });
+
+  test("display Book not found when invalid id", () => {
+    render(
+      <MemoryRouter initialEntries={["/books/999"]}>
+        <Routes>
+          <Route path="/books/:id" element={<BookDetails />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    expect(screen.getByText("Book not found!")).toBeInTheDocument();
+  });
 });
