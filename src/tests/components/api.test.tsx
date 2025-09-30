@@ -36,6 +36,14 @@ describe("useBooks hook", () => {
     expect(fetch).toHaveBeenCalledWith(`${process.env.REACT_APP_API_URL}`);
   });
 
+  test("handles fetch error", async () => {
+    const error = new Error("Network error");
+    mockFetch.mockRejectedValueOnce(error);
+    const { result } = renderHook(() => useBooks());
+    await waitFor(() => {
+      expect(result.current).toEqual([]);
+    });
+  });
 });
 
 
