@@ -44,6 +44,15 @@ describe("CartContext", () => {
     });
     expect(result.current.cart).toHaveLength(0);
   });
+
+  test("decreases item quantity and removes when zero", () => {
+    const { result } = renderHook(() => useCart(), { wrapper });
+    act(() => {
+      result.current.addToCart(sampleBook); 
+      result.current.decreaseQty("1"); 
+    });
+    expect(result.current.cart).toHaveLength(0);
+  });
 });
 
 
