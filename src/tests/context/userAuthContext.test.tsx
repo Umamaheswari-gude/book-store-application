@@ -27,6 +27,19 @@ describe("AuthContext", () => {
     expect(result.current.currentUser).toEqual(sampleUser);
   });
   
+  test("useAuth throws error if used outside provider", () => {
+
+    const { result } = renderHook(() => {
+      try {
+        return useAuth();
+      } catch (err: any) {
+        return err;
+      }
+    });
+    expect(result.current).toEqual(
+      new Error("useAuth must be used within an AuthProvider")
+    );
+  });
 });
 
 
