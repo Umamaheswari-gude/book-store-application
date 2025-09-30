@@ -26,6 +26,15 @@ describe("WishlistContext", () => {
     expect(result.current.wishlist).toHaveLength(1);
     expect(result.current.wishlist[0].id).toBe("1");
   });
+  
+  test("does not add the same book twice", () => {
+    const { result } = renderHook(() => useWishlist(), { wrapper });
+    act(() => {
+      result.current.addToWishlist(sampleBook);
+      result.current.addToWishlist(sampleBook);
+    });
+    expect(result.current.wishlist).toHaveLength(1);
+  });
 });
 
 
