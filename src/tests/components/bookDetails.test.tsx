@@ -53,4 +53,17 @@ describe("BookDetails Component", () => {
     );
     expect(screen.getByText("Add to Cart")).toBeInTheDocument();
   });
+
+  test("handles wishlist button click", () => {
+    render(
+      <MemoryRouter initialEntries={["/books/1"]}>
+        <Routes>
+          <Route path="/books/:id" element={<BookDetails />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    const wishlistBtn = screen.getByText("♡ Wishlist");
+    fireEvent.click(wishlistBtn);
+    expect(wishlistBtn).toBeInTheDocument();
+  });
 });
