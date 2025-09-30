@@ -45,6 +45,23 @@ describe("Wishlist Component", () => {
     fireEvent.click(screen.getByRole("button", { name: /Add to Cart/i }));
     expect(addToCart).toHaveBeenCalledWith(sampleBook);
   });
+  
+  test("Removing book from cart", () => {
+    const removeFromCart = jest.fn();
+    mockUseAuth.mockReturnValue({
+      currentUser: { firstName: "Mahi", lastName: "gude", email: "mahi@gmail.com" },
+    });
+    mockUseWishlist.mockReturnValue({ wishlist: [sampleBook] });
+    mockUseCart.mockReturnValue({
+      cart: [{ ...sampleBook, quantity: 1 }],
+      addToCart: jest.fn(),
+      removeFromCart,
+    });
+    render(<Wishlist />);
+    expect(screen.getByText("Remove from Cart")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Remove from Cart/i }));
+    expect(removeFromCart).toHaveBeenCalledWith("1");
+  });
 });
 
 
