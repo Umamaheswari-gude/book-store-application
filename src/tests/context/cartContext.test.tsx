@@ -26,6 +26,15 @@ describe("CartContext", () => {
     expect(result.current.cart).toHaveLength(1);
     expect(result.current.cart[0]).toMatchObject({ id: "1", quantity: 1 });
   });
+
+  test("increases quantity when same book is added again", () => {
+    const { result } = renderHook(() => useCart(), { wrapper });
+    act(() => {
+      result.current.addToCart(sampleBook);
+      result.current.addToCart(sampleBook);
+    });
+    expect(result.current.cart[0].quantity).toBe(2);
+  });
 });
 
 
