@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter, useNavigate } from "react-router-dom";
 import Cart from "../../components/cart";
 
@@ -66,7 +66,7 @@ describe("Cart Component", () => {
     expect(screen.getByText(/no items in cart/i)).toBeInTheDocument();
   });
 
-   test("show cart items and summary correctly", () => {
+   test("shows cart items and summary correctly", () => {
     render(
       <MemoryRouter>
         <Cart
@@ -82,6 +82,25 @@ describe("Cart Component", () => {
     expect(screen.getByText(/Subtotal: ₹1300.00/i)).toBeInTheDocument(); 
     expect(screen.getByText(/Shipping: ₹100.00/i)).toBeInTheDocument();
     expect(screen.getByText(/Total: ₹1400.00/i)).toBeInTheDocument();
+  });
+
+   test("increaseQty and decreaseQty when buttons clicked", () => {
+    const increaseMock = jest.fn();
+    const decreaseMock = jest.fn();
+    render(
+      <MemoryRouter>
+        <Cart
+          cart={sampleCart}
+          increaseQty={increaseMock}
+          decreaseQty={decreaseMock}
+          removeFromCart={jest.fn()}
+        />
+      </MemoryRouter>
+    );
+    fireEvent.click(screen.getAllByText("+")[0]);
+    fireEvent.click(screen.getAllByText("-")[0]);
+    expect(increaseMock).toHaveBeenCalledWith("1");
+    expect(decreaseMock).toHaveBeenCalledWith("1");
   });
 
 });
