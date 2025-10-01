@@ -8,9 +8,9 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
   </AuthProvider>
 );
 const sampleUser: Users = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john@example.com",
+  firstName: "Mahi",
+  lastName: "gude",
+  email: "mahi@gmail.com",
   password: "12345",
 };
 describe("AuthContext", () => {
@@ -40,6 +40,15 @@ describe("AuthContext", () => {
       new Error("useAuth must be used within an AuthProvider")
     );
   });
+
+  test("login updates currentUser correctly", () => {
+    const { result } = renderHook(() => useAuth(), { wrapper });
+    act(() => {
+      result.current.login(sampleUser);
+    });
+    expect(result.current.currentUser).toEqual(sampleUser);
+  }
+  );
 });
 
 
