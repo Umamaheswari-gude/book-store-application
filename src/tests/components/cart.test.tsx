@@ -102,7 +102,6 @@ describe("Cart Component", () => {
     expect(increaseMock).toHaveBeenCalledWith("1");
     expect(decreaseMock).toHaveBeenCalledWith("1");
   });
-
 });
 
 
