@@ -44,6 +44,19 @@ describe("WishlistContext", () => {
     });
     expect(result.current.wishlist).toHaveLength(0);
   });
+
+  test("useWishlist throws error if used outside provider", () => {
+    const { result } = renderHook(() => {
+      try {
+        return useWishlist();
+      } catch (err: any) {
+        return err;
+      }
+    });
+    expect(result.current).toEqual(
+      new Error("useWishlist must be used inside WishlistProvider")
+    );
+  });
 });
 
 
