@@ -149,4 +149,55 @@ describe("BookDetails Component", () => {
     fireEvent.click(button);
     expect(removeFromCart).toHaveBeenCalledWith("1");
   });
+
+  test("displays '♡ Wishlist' and calls addToWishlist when not in wishlist", () => {
+    const addToWishlist = jest.fn();
+      (useCart as jest.Mock).mockReturnValue({
+        cart: [],
+        addToCart: jest.fn(),
+        removeFromCart: jest.fn(),
+      });
+      (useWishlist as jest.Mock).mockReturnValue({
+        wishlist: [], 
+        addToWishlist,
+        removeFromWishlist: jest.fn(),
+      });
+      render(
+        <MemoryRouter initialEntries={["/books/1"]}>
+          <Routes>
+            <Route path="/books/:id" element={<BookDetails />} />
+          </Routes>
+        </MemoryRouter>
+      );
+      const button = screen.getByRole("button", { name: /♡ wishlist/i });
+      expect(button).toBeInTheDocument();
+      fireEvent.click(button);
+      expect(addToWishlist).toHaveBeenCalledWith(mockBook);
+});
+
+  test("displays ':heart:' and calls removeFromWishlist when in wishlist", () => {
+    const removeFromWishlist = jest.fn();
+    (useCart as jest.Mock).mockReturnValue({
+      cart: [],
+      addToCart: jest.fn(),
+      removeFromCart: jest.fn(),
+    });
+    (useWishlist as jest.Mock).mockReturnValue({
+      wishlist: [mockBook], 
+      addToWishlist: jest.fn(),
+      removeFromWishlist,
+    });
+    render(
+      <MemoryRouter initialEntries={["/books/1"]}>
+        <Routes>
+          <Route path="/books/:id" element={<BookDetails />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    const button = screen.getByRole("button", { name: /❤️/i });
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    expect(removeFromWishlist).toHaveBeenCalledWith("1");
+  });
+
 });
