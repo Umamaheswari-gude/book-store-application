@@ -2,6 +2,13 @@
   "name": "book-store-application",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/types",
+      "index.tsx"
+    ]
+  },
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@types/react": "^19.1.13",
