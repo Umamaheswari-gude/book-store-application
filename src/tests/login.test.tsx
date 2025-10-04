@@ -1,10 +1,16 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Login from "../components/login";
 import { AuthProvider } from "../context/userAuthentication";
+
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((...args) => {
@@ -38,16 +44,17 @@ describe("Login Component", () => {
     expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /Login/i })).toBeInTheDocument();
   });
+
   test("shows error for invalid credentials", async () => {
     renderLogin();
     const user = userEvent.setup();
-    await user.type(screen.getByPlaceholderText(/Email address/i), "wrong@test.com");
+    await user.type(screen.getByPlaceholderText(/Email address/i), "uma@gmail.com");
     await user.type(screen.getByPlaceholderText(/Password/i), "wrongpass");
     await user.click(screen.getByRole("button", { name: /Login/i }));
     expect(await screen.findByText(/Invalid email or password/i)).toBeInTheDocument();
   });
-  
-});
+
+  })
 
 
 
