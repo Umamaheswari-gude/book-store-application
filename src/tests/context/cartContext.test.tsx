@@ -53,6 +53,15 @@ describe("CartContext", () => {
     });
     expect(result.current.cart).toHaveLength(0);
   });
+
+  test("increases item quantity", () => {
+    const { result } = renderHook(() => useCart(), { wrapper });
+    act(() => {
+      result.current.addToCart(sampleBook); 
+      result.current.increaseQty("1"); 
+    });
+    expect(result.current.cart[0].quantity).toBe(2);
+  });
 });
 
 
