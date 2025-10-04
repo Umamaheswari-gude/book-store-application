@@ -2,6 +2,8 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { useNavigate } from "react-router-dom";
 import { Book, CartItem } from "../../types/types";
 import BookCard from "../../components/bookCard";
+import { useWishlist } from "../../context/wishlistContext";
+import { useCart } from "../../context/cartContext";
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((...args) => {
@@ -89,5 +91,22 @@ describe("BookCard Component", () => {
     fireEvent.click(screen.getByText("♡"));
     expect(addToWishlist).toHaveBeenCalledWith(sampleBook);
   });
+
+  test("removes from wishlist when already in wishlist", () => {
+  (useWishlist as jest.Mock).mockReturnValue({
+    wishlist: [sampleBook],
+    addToWishlist: jest.fn(),
+    removeFromWishlist,
+  });
+  (useCart as jest.Mock).mockReturnValue({
+    cart: [],
+    addToCart: jest.fn(),
+    removeFromCart: jest.fn(),
+  });
+  render(<BookCard book={sampleBook} />);
+  const button = screen.getByText("❤️");
+  fireEvent.click(button);
+  expect(removeFromWishlist).toHaveBeenCalledWith(sampleBook.id);
+});
  
 });
