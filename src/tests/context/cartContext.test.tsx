@@ -62,6 +62,19 @@ describe("CartContext", () => {
     });
     expect(result.current.cart[0].quantity).toBe(2);
   });
+
+  test("useCart throws error if used outside provider", () => {
+    const { result } = renderHook(() => {
+      try {
+        return useCart();
+      } catch (err: any) {
+        return err;
+      }
+    });
+    expect(result.current).toEqual(
+      new Error("useCart must be used inside CartProvider")
+    );
+  });
 });
 
 
