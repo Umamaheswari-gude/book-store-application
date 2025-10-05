@@ -35,51 +35,6 @@ describe("BookDetails Component", () => {
     (useBooks as jest.Mock).mockReturnValue([mockBook]);
   });
 
-  test("shows Add to Cart button when not in cart", () => {
-    (useCart as jest.Mock).mockReturnValue({
-      cart: [],
-      addToCart: jest.fn(),
-      removeFromCart: jest.fn(),
-    });
-    (useWishlist as jest.Mock).mockReturnValue({
-      wishlist: [],
-      addToWishlist: jest.fn(),
-      removeFromWishlist: jest.fn(),
-    });
-    render(
-      <MemoryRouter initialEntries={["/books/1"]}>
-        <Routes>
-          <Route path="/books/:id" element={<BookDetails />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    expect(screen.getByText("Add to Cart")).toBeInTheDocument();
-  });
-
-  test("handles wishlist button click", () => {
-    const addToWishlist = jest.fn();
-    (useCart as jest.Mock).mockReturnValue({
-      cart: [],
-      addToCart: jest.fn(),
-      removeFromCart: jest.fn(),
-    });
-    (useWishlist as jest.Mock).mockReturnValue({
-      wishlist: [],
-      addToWishlist,
-      removeFromWishlist: jest.fn(),
-    });
-    render(
-      <MemoryRouter initialEntries={["/books/1"]}>
-        <Routes>
-          <Route path="/books/:id" element={<BookDetails />} />
-        </Routes>
-      </MemoryRouter>
-    );
-    const wishlistBtn = screen.getByText("♡ Wishlist");
-    fireEvent.click(wishlistBtn);
-    expect(addToWishlist).toHaveBeenCalledWith(mockBook);
-  });
-
   test("displays Book not found when invalid id", () => {
     (useBooks as jest.Mock).mockReturnValue([]); 
     (useCart as jest.Mock).mockReturnValue({
@@ -175,7 +130,7 @@ describe("BookDetails Component", () => {
       expect(addToWishlist).toHaveBeenCalledWith(mockBook);
 });
 
-  test("displays ':heart:' and calls removeFromWishlist when in wishlist", () => {
+  test("displays heart and calls removeFromWishlist when in wishlist", () => {
     const removeFromWishlist = jest.fn();
     (useCart as jest.Mock).mockReturnValue({
       cart: [],
