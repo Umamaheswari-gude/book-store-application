@@ -59,20 +59,14 @@ describe("Login Component", () => {
   });
 
   test("navigates to register page when button is clicked", () => {
-  render(
-    <MemoryRouter>
-      <AuthProvider>
-      <Login
-      />
-      </AuthProvider>
-    </MemoryRouter>
-  );
+  renderLogin();
 
   const registerButton = screen.getByText("Sign up");
   fireEvent.click(registerButton);
   expect(mockNavigate).toHaveBeenCalledWith("/register");
 
 });
+
 });
 
 
