@@ -1,16 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Login from "../components/login";
 import { AuthProvider } from "../context/userAuthentication";
-
-const mockNavigate = jest.fn();
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockNavigate,
-}));
-
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((...args) => {
@@ -37,6 +30,17 @@ beforeEach(() => {
   localStorage.clear();
   jest.clearAllMocks();
 });
+
+
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
+beforeEach(() => {
+  mockNavigate.mockClear();
+});
+
 describe("Login Component", () => {
   test("renders email and password inputs", () => {
     renderLogin();
@@ -54,7 +58,23 @@ describe("Login Component", () => {
     expect(await screen.findByText(/Invalid email or password/i)).toBeInTheDocument();
   });
 
-  })
+  test("navigates to register page when button is clicked", () => {
+  render(
+    <MemoryRouter>
+      <AuthProvider>
+      <Login
+      />
+      </AuthProvider>
+    </MemoryRouter>
+  );
+
+  const registerButton = screen.getByText("Sign up");
+  fireEvent.click(registerButton);
+  expect(mockNavigate).toHaveBeenCalledWith("/register");
+
+});
+});
+
 
 
 
