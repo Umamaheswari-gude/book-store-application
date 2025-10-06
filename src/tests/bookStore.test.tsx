@@ -15,6 +15,15 @@ const mockBooks = [
   { id: "2", bookName: "Atomic Habits", author: "James Clear" },
 ];
 
+const renderBook = () =>
+  render(
+    <MemoryRouter>
+      <WishlistProvider>
+        <Application />
+      </WishlistProvider>
+    </MemoryRouter>
+  );
+
 describe("Application Component", () => {
   beforeEach(() => {
     const { useBooks } = require("../utils/api");
@@ -30,13 +39,7 @@ describe("Application Component", () => {
   });
 
   test("filters books based on search input", () => {
-    render(
-    <MemoryRouter>
-            <WishlistProvider>
-        <Application />
-        </WishlistProvider>
-    </MemoryRouter>
-        );
+    renderBook();
     const searchInput = screen.getByPlaceholderText(/search/i);
 
     fireEvent.change(searchInput, { target: { value: "harry" } });
@@ -54,12 +57,8 @@ describe("Application Component", () => {
       increaseQty: jest.fn(),
       decreaseQty: jest.fn(),
     });
-    render(
-    <MemoryRouter>
-            <WishlistProvider>
-        <Application />
-            </WishlistProvider>
-    </MemoryRouter>);
+    renderBook();
+
     const addButton = screen.getAllByText(/add to cart/i)[0];
     fireEvent.click(addButton);
     expect(mockAddToCart).toHaveBeenCalled();
@@ -75,12 +74,8 @@ describe("Application Component", () => {
       increaseQty: mockIncreaseQty,
       decreaseQty: jest.fn(),
     });
-    render(
-    <MemoryRouter>
-            <WishlistProvider>
-        <Application />
-            </WishlistProvider>
-    </MemoryRouter>);
+    renderBook();
+
     const increaseButton = screen.getByText("+");
     fireEvent.click(increaseButton);
     expect(mockIncreaseQty).toHaveBeenCalledWith("1");
@@ -96,12 +91,7 @@ describe("Application Component", () => {
       increaseQty: jest.fn(),
       decreaseQty: mockDecreaseQty,
     });
-    render(
-    <MemoryRouter>
-            <WishlistProvider>
-        <Application />
-            </WishlistProvider>
-    </MemoryRouter>);
+    renderBook();
     const decreaseButton = screen.getByText("-");
     fireEvent.click(decreaseButton);
     expect(mockDecreaseQty).toHaveBeenCalledWith("1");
