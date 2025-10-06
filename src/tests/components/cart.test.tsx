@@ -102,6 +102,24 @@ describe("Cart Component", () => {
     expect(increaseMock).toHaveBeenCalledWith("1");
     expect(decreaseMock).toHaveBeenCalledWith("1");
   });
+
+  test("calls removeFromCart when the remove button is clicked", () => {
+  const removeFromCartMock = jest.fn();
+  render(
+    <MemoryRouter>
+      <Cart
+        cart={sampleCart}
+        increaseQty={jest.fn()}
+        decreaseQty={jest.fn()}
+        removeFromCart={removeFromCartMock}
+      />
+    </MemoryRouter>
+  );
+
+  const removeButtons = screen.getAllByText("❌");
+  fireEvent.click(removeButtons[0]);
+  expect(removeFromCartMock).toHaveBeenCalledWith("1");
+});
 });
 
 
