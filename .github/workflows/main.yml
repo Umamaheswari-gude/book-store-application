@@ -48,7 +48,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: build the docker image
-        run: docker build -t "${{ secrets.DOCKER_USERNAME }}"/book-store-application:v1
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/book-store-application:v1 .
              
       - name: push the docker-image
         run: docker push "${{ secrets.DOCKER_USERNAME }}"/book-store-application:v1
