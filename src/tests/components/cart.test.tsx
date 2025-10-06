@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { MemoryRouter, useNavigate } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 import Cart from "../../components/cart";
 
 beforeAll(() => {
@@ -15,12 +15,6 @@ beforeAll(() => {
 afterAll(() => {
   jest.restoreAllMocks();
 });
-
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: jest.fn(),
-}));
-const mockNavigate = useNavigate as jest.Mock;
 
 const sampleCart = [
   {
@@ -46,6 +40,15 @@ const sampleCart = [
     bookImage: "the-hobbit.jpg"
   }
 ];
+
+const mockNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}));
+beforeEach(() => {
+  mockNavigate.mockClear();
+});
 
 describe("Cart Component", () => {
   beforeEach(() => {
@@ -119,6 +122,22 @@ describe("Cart Component", () => {
   const removeButtons = screen.getAllByText("❌");
   fireEvent.click(removeButtons[0]);
   expect(removeFromCartMock).toHaveBeenCalledWith("1");
+});
+
+test("navigates to wishlist page when button is clicked", () => {
+  render(
+    <MemoryRouter>
+      <Cart
+        cart={sampleCart}
+        increaseQty={jest.fn()}
+        decreaseQty={jest.fn()}
+        removeFromCart={jest.fn()}
+      />
+    </MemoryRouter>
+  );
+  const wishlistButton = screen.getByText("♡");
+  fireEvent.click(wishlistButton);
+  expect(mockNavigate).toHaveBeenCalledWith("/wishlist");
 });
 });
 
