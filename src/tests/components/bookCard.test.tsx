@@ -1,9 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
 import { Book, CartItem } from "../../types/types";
 import BookCard from "../../components/bookCard";
 import { useWishlist } from "../../context/wishlistContext";
-import { useCart } from "../../context/cartContext";
+import {  useCart } from "../../context/cartContext";
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((...args) => {
@@ -17,6 +16,8 @@ beforeAll(() => {
 afterAll(() => {
   jest.restoreAllMocks();
 });
+const mockNavigate = jest.fn();
+
 
 jest.mock("../../context/cartContext", () => ({
   useCart: jest.fn(),
@@ -26,10 +27,9 @@ jest.mock("../../context/wishlistContext", () => ({
 }));
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useNavigate: jest.fn(),
+  useNavigate: () => mockNavigate,
 }));
 
-const mockNavigate = useNavigate as jest.Mock;
 const sampleBook: Book = {
     id: "1",
     bookName: "Harry Potter",
@@ -38,6 +38,7 @@ const sampleBook: Book = {
     bookImage: "hp.jpg",
     description: ""
 };
+
 describe("BookCard Component", () => {
   let addToCart: jest.Mock;
   let removeFromCart: jest.Mock;
@@ -107,6 +108,13 @@ describe("BookCard Component", () => {
   const button = screen.getByText("❤️");
   fireEvent.click(button);
   expect(removeFromWishlist).toHaveBeenCalledWith(sampleBook.id);
+});  
+
+test("navigates to book details page when the image is clicked", () => {
+    setup();
+
+    const bookImage = screen.getByRole("img", { name: sampleBook.bookName });
+    fireEvent.click(bookImage);
+    expect(mockNavigate).toHaveBeenCalledWith(`/books/${sampleBook.id}`);
 });
- 
 });
