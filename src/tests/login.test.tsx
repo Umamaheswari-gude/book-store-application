@@ -3,7 +3,7 @@ import { MemoryRouter } from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 import Login from "../components/login";
-import { AuthProvider } from "../context/userAuthentication";
+import { staticUsers } from "../components/data/userStore";
 
 beforeAll(() => {
   jest.spyOn(console, 'warn').mockImplementation((...args) => {
@@ -21,9 +21,7 @@ afterAll(() => {
 const renderLogin = () =>
   render(
     <MemoryRouter>
-      <AuthProvider>
         <Login />
-      </AuthProvider>
     </MemoryRouter>
   );
 beforeEach(() => {
@@ -31,12 +29,20 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-
+const mockLogin = jest.fn();
 const mockNavigate = jest.fn();
+
+jest.mock("../context/userAuthentication", () => ({
+  useAuth: () => ({
+    login: mockLogin,
+  }),
+}));
+
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
+
 beforeEach(() => {
   mockNavigate.mockClear();
 });
@@ -67,7 +73,25 @@ describe("Login Component", () => {
 
 });
 
+  test("navigates to books page on successful login", () => {
+  const validUser = staticUsers[0];
+  renderLogin();
+  const emailInput = screen.getByPlaceholderText(/email address/i);
+  const passwordInput = screen.getByPlaceholderText(/password/i);
+  const loginButton = screen.getByRole("button", { name: /login/i });
+  fireEvent.change(emailInput, { target: { value: validUser.email } });
+  fireEvent.change(passwordInput, { target: { value: validUser.password } });
+  fireEvent.click(loginButton);
+  expect(mockLogin).toHaveBeenCalledWith(validUser);
+  expect(mockNavigate).toHaveBeenCalledWith("/books");
 });
+
+
+});
+
+
+
+
 
 
 
