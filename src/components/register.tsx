@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/auth.css";
+import "../styles/register.css";
 import { Users } from "../types/types";
 import { staticUsers } from "./data/userStore";
 
@@ -60,7 +60,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container-register">
       <div className="auth-box">
         <h2>Sign up</h2>
         <p className="auth-subtitle">
