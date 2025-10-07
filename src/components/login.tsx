@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/auth.css";
+import "../styles/login.css";
 import { useAuth } from "../context/userAuthentication";
 import { staticUsers } from "./data/userStore";
 
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-container-login">
       <div className="auth-box">
         <h2>Login</h2>
         <p className="auth-subtitle">Login to access your BookMart account</p>
