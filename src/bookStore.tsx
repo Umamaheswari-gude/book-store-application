@@ -4,17 +4,25 @@ import { useBooks } from "./utils/api";
 import Navbar from "./components/navbar";
 import Cart from "./components/cart";
 import { useCart } from "./context/cartContext"; 
-import React from "react";
+import React, { useMemo } from "react";
 
 function Application() {
   const books = useBooks();
   const { cart, addToCart, removeFromCart, increaseQty, decreaseQty } = useCart(); 
   const [search, setSearch] = React.useState("");
-  const filteredBooks = books.filter(
-    (book) =>
-      book.bookName.toLowerCase().includes(search.toLowerCase()) ||
-      book.author.toLowerCase().includes(search.toLowerCase())
-  );
+
+  const filteredBooks = useMemo(() => {
+    if (!search) {
+      return books;
+    }
+
+    return books.filter(
+      (book) =>
+        book.bookName.toLowerCase().includes(search.toLowerCase()) ||
+        book.author.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [books, search]);
+    
   return (
     <div className="head">
       <Navbar search={search} setSearch={setSearch} />
