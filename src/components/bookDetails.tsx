@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useBooks } from "../utils/api";
-import './bookDetails.css';
+import '../styles/bookDetails.css';
 import { useCart } from "../context/cartContext";
 import { useWishlist } from "../context/wishlistContext";
 

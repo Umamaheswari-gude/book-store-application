@@ -1,6 +1,6 @@
 import React from "react";
 import { Book, CartItem } from "../types/types";
-import "./bookCard.css";
+import "../styles/bookCard.css";
 import { useCart } from "../context/cartContext";
 import { useWishlist } from "../context/wishlistContext";
 import { useNavigate } from "react-router-dom";

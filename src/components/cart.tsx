@@ -1,6 +1,6 @@
 import React from "react";
 import { CartItem } from "../types/types";
-import "./cart.css";
+import "../styles/cart.css";
 import { useNavigate } from "react-router-dom";
 // import { BsCart } from 'react-icons/bs';
 
